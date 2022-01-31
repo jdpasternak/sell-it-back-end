@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
       model: Product,
       attributes: ["product_name"],
     },
-    attributes: ["category_name"],
+    attributes: ["id", "category_name"],
   })
     .then((dbCategoryData) => res.json(dbCategoryData))
     .catch((err) => {
@@ -28,7 +28,7 @@ router.get("/:id", (req, res) => {
       model: Product,
       attributes: ["product_name"],
     },
-    attributes: ["category_name"],
+    attributes: ["id", "category_name"],
   })
     .then((dbCategoryData) => res.json(dbCategoryData))
     .catch((err) => {
