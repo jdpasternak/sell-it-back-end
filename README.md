@@ -1,35 +1,71 @@
 # SellIt Back End
 
-## User Story
+## Table of Contents
 
-AS A manager at an internet retail company
-I WANT a back end for my e-commerce website that uses the latest technologies
-SO THAT my company can compete with other e-commerce companies
+## Description
 
-## Acceptance Criteria
+SellIt Back End is an e-commerce API server written on Express.js that uses Sequelize as an ORM to connected to a MySQL database.
 
-GIVEN a functional Express.js API
-WHEN I add my database name, MySQL username, and MySQL password to an environment variable file
-THEN I am able to connect to a database using Sequelize
-WHEN I enter schema and seed commands
-THEN a development database is created and is seeded with test data
-WHEN I enter the command to invoke the application
-THEN my server is started and the Sequelize models are synced to the MySQL database
-WHEN I open API GET routes in Insomnia for categories, products, or tags
-THEN the data for each of these routes is displayed in a formatted JSON
-WHEN I test API POST, PUT, and DELETE routes in Insomnia
-THEN I am able to successfully create, update, and delete data in my database
+## Installation
 
-## Mock-Ups
+### Prerequisites
 
-GET routes to return all categories, all products, and all tags
+- MySQL server if installed locally, or JawsDB if deploying to Heroku
 
-![GET routes to return all categories, all products, and all tags](assets/images/mockup_01.gif)
+### Steps
 
-GET routes to return a single categories, a single products, and a single tags
+1. Download the source code or clone it to an empty directory.
+2. In the root of the downloaded code, open a console, type `npm install`, then press `Enter` to install dependecies.
+3. In a MySQL console, type `source db/schema.sql`, then press `Enter`. (backslash `\` if on Windows)
+4. In the original console window, type `npm run seed`, and press `Enter` to seed the database.
+5. Type `npm run start` and press `Enter` to start the server.
 
-![GET routes to return a single categories, a single products, and a single tags](assets/images/mockup_02.gif)
+## Usage
 
-POST, PUT, and DELETE routes for categories
+## Walkthrough
 
-![POST, PUT, and DELETE routes for categories](assets/images/mockup_03.gif)
+The video below demonstrates how to use this application.
+
+[![walkthrough first frame](assets/images/walkthrough/walkthrough.png)](https://jdpasternak.github.io/sell-it-back-end)
+
+### API Endpoints
+
+The following describes available API endpoints.
+
+#### /api/categories
+
+`GET /api/categories` -> returns all categories
+`GET /api/categories/<id>` -> returns a category with the given ID
+`POST /api/categories` -> creates a new category. Expects `category_name`, a string, in the body.
+`PUT /api/categories/<id>` -> updates a category with the given ID. Expects `category_name`, a string, in the body.
+`DELETE /api/categories/<id>` -> deletes a category with the given ID
+
+#### /api/products
+
+`GET /api/products` -> returns all products
+`GET /api/products/<id>` -> returns a product with the given ID
+`POST /api/products` -> creates a new product. Expects the following in the body:
+
+- `product_name`, a string
+- `price`, a decimal
+- `stock`, an integer
+- `category_id`, an integer
+- `tagIds`, an array of integers
+
+`PUT /api/products/<id>` -> updates a product with the given ID. Expects the following in the body:
+
+- `product_name`, a string
+- `price`, a decimal
+- `stock`, an integer
+- `category_id`, an integer
+- `tagIds`, an array of integers
+
+`DELETE /api/products/<id>` -> deletes a product with the given ID
+
+#### /api/tags
+
+`GET /api/tags` -> returns all tags
+`GET /api/tags/<id>` -> returns a tag with the given ID
+`POST /api/tags` -> creates a new tag. Expects `tag_name`, a string, in the body.
+`PUT /api/tags/<id>` -> updates a tag with the given ID. Expects `tag_name`, a string, in the body.
+`DELETE /api/tags/<id>` -> deletes a tag with the given ID
